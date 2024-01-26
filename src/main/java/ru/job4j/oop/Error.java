@@ -6,7 +6,6 @@ public class Error {
     int status;
     String message;
 
-
     public Error() {
     }
 
