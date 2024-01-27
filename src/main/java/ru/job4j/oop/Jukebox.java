@@ -4,14 +4,9 @@ public class Jukebox {
 
     public void music(int position) {
         switch (position) {
-            case 1:
-                System.out.println("Пусть бегут неуклюже пешеходы по лужам");
-                break;
-            case 2:
-                System.out.println("Спят усталые игрушки, книжки спят");
-                break;
-            default:
-                System.out.println("Песня не найдена");
+            case 1 -> System.out.println("Пусть бегут неуклюже пешеходы по лужам");
+            case 2 -> System.out.println("Спят усталые игрушки, книжки спят");
+            default -> System.out.println("Песня не найдена");
         }
     }
 
