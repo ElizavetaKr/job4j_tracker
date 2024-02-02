@@ -24,20 +24,19 @@ public class Tracker {
                 size++;
             }
         }
-        result = Arrays.copyOf(result, size);
-        return result;
+        return Arrays.copyOf(result, size);
     }
 
     public Item[] findByName(String key) {
-        size = 0;
-        Item[] result = new Item[items.length];
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getName().equals(key)) {
-                result[size] = items[i];
-                size++;
+        int count = 0;
+        Item[] result = new Item[size];
+        for (int i = 0; i < size; i++) {
+            if (items[i].getName().equals(key)) {
+                result[count] = items[i];
+                count++;
             }
         }
-        result = Arrays.copyOf(result, size);
+        result = Arrays.copyOf(result, count);
         return result;
     }
 
