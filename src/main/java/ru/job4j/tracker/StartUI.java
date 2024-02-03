@@ -21,9 +21,9 @@ public class StartUI {
                 System.out.println("=== Вывод всех заявок ===");
                 Item[] items = tracker.findAll();
                 if (items.length > 0) {
-                for (Item item : items) {
-                    System.out.println(item);
-                }
+                    for (Item item : items) {
+                        System.out.println(item);
+                    }
                 } else {
                     System.out.println("Хранилище еще не содержит заявок");
                 }
@@ -53,6 +53,18 @@ public class StartUI {
                 Item item = tracker.findById(id);
                 System.out.println(item != null ? item : "Заявка с введенным id: " + id + " не найдена.");
 
+            } else if (select == 5) {
+                System.out.println("=== Вывод заявок по имени ===");
+                System.out.println("Введите имя: ");
+                String name = scanner.nextLine();
+                Item[] items = tracker.findByName(name);
+                if (items.length > 0) {
+                    for (Item item : items) {
+                        System.out.println(item);
+                    }
+                } else {
+                    System.out.println("Заявки с именем: " + name + " не найдены.");
+                }
             } else if (select == 6) {
                 run = false;
             }
