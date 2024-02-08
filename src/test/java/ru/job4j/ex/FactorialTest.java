@@ -18,7 +18,7 @@ public class FactorialTest {
     }
 
     @Test
-    public void whenCalc5Then120 () {
+    public void whenCalc5Then120() {
         int number = 5;
         int expected = 120;
         int result = new Factorial().calc(number);
