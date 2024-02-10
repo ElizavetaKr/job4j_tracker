@@ -179,12 +179,13 @@ class StartUITest {
                         + "1. Завершить программу" + ln
                         + "=== Завершение программы ===" + ln);
     }
+
     @Test
     void whenInvalidExit() {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
         Input input = new MockInput(new String[]{
-                "7","0"
+                "7", "0"
         });
         UserAction[] actions = {
                 new Exit(output)
