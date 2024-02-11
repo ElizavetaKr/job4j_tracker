@@ -47,7 +47,6 @@ class PasswordValidatorTest {
         assertThat(exception.getMessage()).isEqualTo(expected);
     }
 
-
     @Test
     void whenPasswordNotContainUpperCaseLetter() {
         String password = "ln2$mrty12";
