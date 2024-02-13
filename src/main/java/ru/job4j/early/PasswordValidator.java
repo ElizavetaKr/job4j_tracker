@@ -60,7 +60,7 @@ public class PasswordValidator {
         }
 
         for (String substring : FORBIDDEN) {
-            if (password.toLowerCase().equals(substring) || password.toLowerCase().contains(substring)) {
+            if (password.toLowerCase().contains(substring)) {
                 throw new IllegalArgumentException(
                         "Password shouldn't contain substrings: qwerty, 12345, password, admin, user"
                 );
