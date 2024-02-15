@@ -28,28 +28,36 @@ public class Tracker {
     }
 
     public Item findById(int id) {
-        Item result = null;
+        int index = indexOf(id);
+        return index != -1 ? items.get(index) : null;
+    }
+
+    private int indexOf(int id) {
+        int result = -1;
         for (Item item : items) {
             if (item.getId() == id) {
-                result = item;
+                result = items.indexOf(item);
                 break;
             }
         }
         return result;
     }
 
-    public boolean replace(int id, Item newItem) {
-        Item item = findById(id);
-        boolean result = item != null;
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        boolean result = index != -1;
         if (result) {
-            items.set(items.indexOf(item), newItem);
-            newItem.setId(id);
+            items.set(index, item);
+            item.setId(id);
         }
         return result;
     }
 
     public void delete(int id) {
-        Item item = findById(id);
-        items.remove(item);
+        int index = indexOf(id);
+        boolean result = index != -1;
+        if (result) {
+            items.remove(items.get(index));
+        }
     }
 }
