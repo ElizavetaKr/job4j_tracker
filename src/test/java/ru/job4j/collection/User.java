@@ -11,12 +11,12 @@ public class User implements Comparable<User> {
         this.name = name;
         this.age = age;
     }
-//реализовать compare
+
     @Override
     public int compareTo(User o) {
-        int nameCompare =  name.compareTo(o.name);
+        int nameCompare = name.compareTo(o.name);
         int ageCompare = Integer.compare(age, o.age);
-        return nameCompare !=0 ? nameCompare : ageCompare;
+        return nameCompare != 0 ? nameCompare : ageCompare;
     }
 
     @Override
