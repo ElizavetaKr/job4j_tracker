@@ -1,4 +1,4 @@
-package ru.job4j.inheritance;
+package ru.job4j.inheritance.pizza;
 
 public class PizzaExtraCheeseExtraTomato extends PizzaExtraCheese {
     @Override

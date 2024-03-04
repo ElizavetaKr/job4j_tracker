@@ -1,4 +1,8 @@
-package ru.job4j.ex;
+package ru.job4j.ex.user;
+
+import ru.job4j.ex.user.User;
+import ru.job4j.ex.user.UserInvalidException;
+import ru.job4j.ex.user.UserNotFoundException;
 
 public class UserStore {
     public static User findUser(User[] users, String login) throws UserNotFoundException {
