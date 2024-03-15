@@ -20,15 +20,13 @@ public class FunctionalInterfaces {
         biConsumer.accept(7, "seven");
 
         BiPredicate<Integer, String> biPredicate = (key, value) -> {
-            if (key % 2 == 0 || value.length() == 4) {
-                System.out.println("key: " + key + " value: " + value);
-                return true;
-            } else {
-                return false;
-            }
+            return key % 2 == 0 || value.length() == 4;
         };
+
         for (Integer key : map.keySet()) {
-            biPredicate.test(key, map.get(key));
+            if (biPredicate.test(key, map.get(key))) {
+                System.out.println("key: " + key + " value: " + map.get(key));
+            }
         }
 
         Supplier<List<String>> supplier = () -> new ArrayList<>(map.values());
