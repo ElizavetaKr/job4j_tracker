@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Класс описывает модель банковской системы
+ *
  * @author Елизавета Крюкова
  * @version 1.0
  */
@@ -18,7 +19,11 @@ public class BankService {
      * Хранение всех пользователей системы с привязанными к ним счетами
      * осуществляется в коллекции типа HashMap
      */
-    private final Map<User, List<Account>> users = new HashMap<>();
+    private final Map<User, List<Account>> users;
+
+    public BankService(Map<User, List<Account>> users) {
+        this.users = users;
+    }
 
     /**
      * Метод принимает на вход пользователя и добавляет его в систему.
@@ -63,14 +68,11 @@ public class BankService {
      * @return возвращает пользователя или null если пользователь не найден
      */
     public User findByPassport(String passport) {
-        User result = null;
-        for (User key : users.keySet()) {
-            if (passport.equals(key.getPassport())) {
-                result = key;
-                break;
-            }
-        }
-        return result;
+        return users.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -81,18 +83,15 @@ public class BankService {
      * @return возвращает счет пользователя или null если счет пользователя не найден
      */
     public Account findByRequisite(String passport, String requisite) {
-        Account result = null;
         User key = findByPassport(passport);
-        List<Account> accounts = users.get(key);
-        if (key != null) {
-            for (Account acc : accounts) {
-                if (requisite.equals(acc.getRequisite())) {
-                    result = acc;
-                    break;
-                }
-            }
+        if (key == null) {
+            return null;
         }
-        return result;
+        return users.get(key)
+                .stream()
+                .filter(account -> account.getRequisite().equals(requisite))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
