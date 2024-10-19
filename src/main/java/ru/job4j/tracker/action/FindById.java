@@ -17,7 +17,7 @@ public class FindById implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         output.println("=== Вывод заявки по id ===");
         int id = input.askInt("Введите id: ");
         Item item = tracker.findById(id);
