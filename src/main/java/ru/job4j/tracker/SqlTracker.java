@@ -86,7 +86,7 @@ public class SqlTracker implements Store {
         Item item = findById(id);
         if (item != null) {
             try (Statement statement = connection.createStatement()) {
-                statement.execute(String.format("DELETE FROM items"
+                statement.execute(String.format("DELETE FROM items "
                         + "WHERE id = %s;", id));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
