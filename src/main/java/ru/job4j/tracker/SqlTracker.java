@@ -101,9 +101,7 @@ public class SqlTracker implements Store {
             var selection = statement.executeQuery(String.format(
                     "SELECT * FROM items"));
             while (selection.next()) {
-                items.add(create(selection.getInt("id"),
-                        selection.getString("name"),
-                        selection.getTimestamp("created")));
+                items.add(create(selection));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -118,9 +116,7 @@ public class SqlTracker implements Store {
             var selection = statement.executeQuery(String.format(
                     "SELECT * FROM items WHERE name = '%s'", key));
             while (selection.next()) {
-                items.add(create(selection.getInt("id"),
-                        selection.getString("name"),
-                        selection.getTimestamp("created")));
+                items.add(create(selection));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -135,9 +131,7 @@ public class SqlTracker implements Store {
             var selection = statement.executeQuery(String.format(
                     "SELECT * FROM items WHERE id = %s", id));
             if (selection.next()) {
-                item = create(selection.getInt("id"),
-                        selection.getString("name"),
-                        selection.getTimestamp("created"));
+                item = create(selection);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -145,8 +139,8 @@ public class SqlTracker implements Store {
         return item;
     }
 
-    private Item create(int id, String name, Timestamp created) {
-        LocalDateTime localDateTime = created.toLocalDateTime();
-        return new Item(id, name, localDateTime);
+    private Item create(ResultSet resultSet) throws SQLException {
+        LocalDateTime localDateTime = resultSet.getTimestamp("created").toLocalDateTime();
+        return new Item(resultSet.getInt("id"), resultSet.getString("name"), localDateTime);
     }
 }
