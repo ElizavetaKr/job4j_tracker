@@ -86,6 +86,21 @@ public class SqlTrackerTest {
     }
 
     @Test
+    public void whenDeleteOneItemThenTableNotEmpty() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item1 = new Item("item");
+        Item item2 = new Item("item");
+        Item item3 = new Item("item");
+        tracker.add(item1);
+        tracker.add(item2);
+        tracker.add(item3);
+        tracker.delete(item1.getId());
+        List<Item> items = tracker.findAll();
+        assertThat(items).isNotEmpty()
+                .hasSize(2);
+    }
+
+    @Test
     public void whenFindByIdNotExistIdThenNull() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
